@@ -6,17 +6,17 @@ from TwitterAPI import TwitterAPI
 import requests
 
 consumer_key = os.getenv('CONSUMER_KEY')
-assert isinstance(consumer_key, str)
+assert consumer_key
 consumer_secret = os.getenv('CONSUMER_SECRET')
-assert isinstance(consumer_secret, str)
+assert consumer_secret
 key = os.getenv('KEY')
-assert isinstance(key, str)
+assert key
 secret = os.getenv('SECRET')
-assert isinstance(secret, str)
+assert secret
 proxy = os.getenv('https_proxy')
 email = os.getenv('EMAIL')
 path = os.getenv('IMAGE_PATH')
-assert isinstance(email, str) or isinstance(path, str)
+assert email or path
 
 
 def get_gravatar(email: str):
