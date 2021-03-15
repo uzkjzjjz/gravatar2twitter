@@ -1,22 +1,29 @@
-name: 'Gravatar to Twitter'
-author: 'myl7'
-description: 'Use Gravatar to provide avatar for Twitter'
+name: Gravatar to Twitter
+author: myl7
+description: Use Gravatar to provide avatar for Twitter
 inputs:
   consumer_key:
+    description: Provided by API key of Consumer Keys of App in Twitter developer portal
     required: true
   consumer_secret:
+    description: Provided by API secret of Consumer Keys of App in Twitter developer portal
     required: true
   key:
+    description: Provided by Access token of Authentication Tokens of App in Twitter developer portal
     required: true
   secret:
+    description: Provided by Access secret of Authentication Tokens of App in Twitter developer portal
     required: true
   proxy:
-    required: false
-    default: ''
-  email:
+    description: Setup proxy. Like ''http://127.0.0.1:1080''.
     required: false
     default: ''
   image_path:
+    description: If provided, the image on the path will be used as avatar for Twitter
+    required: false
+    default: ''
+  email:
+    description: If image_path is not provided, get avatar according to the email from Gravatar
     required: false
     default: ''
 runs:
