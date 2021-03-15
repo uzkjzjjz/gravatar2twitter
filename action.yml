@@ -1,0 +1,32 @@
+name: 'Gravatar to Twitter'
+author: 'myl7'
+description: 'Use Gravatar to provide avatar for Twitter'
+inputs:
+  consumer_key:
+    required: true
+  consumer_secret:
+    required: true
+  key:
+    required: true
+  secret:
+    required: true
+  proxy:
+    required: false
+    default: ''
+  email:
+    required: false
+    default: ''
+  image_path:
+    required: false
+    default: ''
+runs:
+  using: 'docker'
+  image: 'docker://myl7/gravatar2twitter:latest'
+  env:
+    CONSUMER_KEY: INPUT_CONSUMER_KEY
+    CONSUMER_SECRET: INPUT_CONSUMER_KEY
+    KEY: INPUT_KEY
+    SECRET: INPUT_SECRET
+    https_proxy: INPUT_PROXY
+    EMAIL: INPUT_EMAIL
+    IMAGE_PATH: INPUT_IMAGE_PATH
