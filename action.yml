@@ -22,11 +22,3 @@ inputs:
 runs:
   using: 'docker'
   image: 'docker://myl7/gravatar2twitter:latest'
-  env:
-    CONSUMER_KEY: INPUT_CONSUMER_KEY
-    CONSUMER_SECRET: INPUT_CONSUMER_KEY
-    KEY: INPUT_KEY
-    SECRET: INPUT_SECRET
-    https_proxy: INPUT_PROXY
-    EMAIL: INPUT_EMAIL
-    IMAGE_PATH: INPUT_IMAGE_PATH

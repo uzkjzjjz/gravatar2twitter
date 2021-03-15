@@ -5,17 +5,19 @@ import hashlib
 from TwitterAPI import TwitterAPI
 import requests
 
-consumer_key = os.getenv('CONSUMER_KEY')
+consumer_key = os.getenv('INPUT_CONSUMER_KEY')
 assert consumer_key
-consumer_secret = os.getenv('CONSUMER_SECRET')
+consumer_secret = os.getenv('INPUT_CONSUMER_SECRET')
 assert consumer_secret
-key = os.getenv('KEY')
+key = os.getenv('INPUT_KEY')
 assert key
-secret = os.getenv('SECRET')
+secret = os.getenv('INPUT_SECRET')
 assert secret
-proxy = os.getenv('https_proxy')
-email = os.getenv('EMAIL')
-path = os.getenv('IMAGE_PATH')
+proxy = os.getenv('INPUT_PROXY')
+if proxy:
+    os.setenv('https_proxy', proxy)
+email = os.getenv('INPUT_EMAIL')
+path = os.getenv('INPUT_IMAGE_PATH')
 assert email or path
 
 
