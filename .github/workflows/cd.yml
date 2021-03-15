@@ -1,8 +1,8 @@
 name: CD
 on:
-  release:
-    types:
-      - published
+  create:
+    tags:
+      - v*.*.*
 jobs:
   cd:
     name: CD
