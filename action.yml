@@ -31,4 +31,4 @@ inputs:
     default: ''
 runs:
   using: 'docker'
-  image: 'docker://myl7/gravatar2twitter:1.1.1'
+  image: 'docker://myl7/gravatar2twitter:1.1.2'
