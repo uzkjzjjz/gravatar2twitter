@@ -15,6 +15,7 @@ secret = os.getenv('INPUT_SECRET')
 assert secret
 proxy = os.getenv('INPUT_PROXY')
 if proxy:
+    os.setenv('http_proxy', proxy)
     os.setenv('https_proxy', proxy)
 email = os.getenv('INPUT_EMAIL')
 path = os.getenv('INPUT_IMAGE_PATH')
@@ -34,7 +35,7 @@ if path:
 else:
     image = get_gravatar(email)
 
-api = TwitterAPI(consumer_key, consumer_secret, key, secret, proxy_url=proxy)
+api = TwitterAPI(consumer_key, consumer_secret, key, secret)
 
 
 def put_avatar(image: bytes):
