@@ -13,6 +13,8 @@ key = os.getenv('INPUT_KEY')
 assert key
 secret = os.getenv('INPUT_SECRET')
 assert secret
+name = os.getenv('INPUT_NAME')
+assert name
 proxy = os.getenv('INPUT_PROXY')
 if proxy:
     os.setenv('http_proxy', proxy)
@@ -36,6 +38,15 @@ else:
     image = get_gravatar(email)
 
 api = TwitterAPI(consumer_key, consumer_secret, key, secret)
+
+
+def get_avatar(name: str):
+    res = api.request('users/show', {'screen_name': name})
+
+    if res.status_code != 200:
+        raise Exception(f'Failed to get profile image with status code {res.status_code}')
+    else:
+        return res.content
 
 
 def put_avatar(image: bytes):
