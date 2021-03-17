@@ -1,11 +1,13 @@
 import os
 import base64
 import hashlib
+import io
 
 from TwitterAPI import TwitterAPI
 import requests
 from PIL import Image, ImageChops
 
+# Required envs
 consumer_key = os.getenv('INPUT_CONSUMER_KEY')
 assert consumer_key
 consumer_secret = os.getenv('INPUT_CONSUMER_SECRET')
@@ -17,12 +19,17 @@ assert secret
 name = os.getenv('INPUT_NAME')
 assert name
 proxy = os.getenv('INPUT_PROXY')
+
+# Optional envs
+# Either path or email should be set. Check path first.
 if proxy:
     os.setenv('http_proxy', proxy)
     os.setenv('https_proxy', proxy)
 email = os.getenv('INPUT_EMAIL')
 path = os.getenv('INPUT_IMAGE_PATH')
 assert email or path
+
+api = TwitterAPI(consumer_key, consumer_secret, key, secret)
 
 
 def get_gravatar(email: str):
@@ -32,22 +39,14 @@ def get_gravatar(email: str):
     return requests.get(url).content
 
 
-if path:
-    with open(path, 'rb') as f:
-        image = f.read
-else:
-    image = get_gravatar(email)
-
-api = TwitterAPI(consumer_key, consumer_secret, key, secret)
-
-
 def get_avatar(name: str):
     res = api.request('users/show', {'screen_name': name})
 
     if res.status_code != 200:
         raise Exception(f'Failed to get profile image with status code {res.status_code}')
-    else:
-        return res.content
+
+    url = res.json()['profile_image_url_https']
+    return requests.get(url).content
 
 
 def put_avatar(image: bytes):
@@ -59,8 +58,18 @@ def put_avatar(image: bytes):
         print('OK to update profile image')
 
 
+if path:
+    with open(path, 'rb') as f:
+        image = f.read
+else:
+    image = get_gravatar(email)
+
 avatar = get_avatar(name)
-diff = ImageChops.difference(avatar, image)
+
+image_old = Image.open(io.BytesIO(avatar))
+image_new = Image.open(io.BytesIO(image))
+
+diff = ImageChops.difference(image_old, image_new)
 if diff.getbbox():
     print('Update avatar')
     put_avatar(image)
