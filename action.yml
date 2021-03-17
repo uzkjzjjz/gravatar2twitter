@@ -14,6 +14,9 @@ inputs:
   secret:
     description: Provided by Access secret of Authentication Tokens of App in Twitter developer portal
     required: true
+  name:
+    description: Screen name, which is like ''@myl107'' without @.
+    required: true
   proxy:
     description: Setup proxy. Like ''http://127.0.0.1:1080''.
     required: false
