@@ -16,6 +16,7 @@ jobs:
           images: myl7/gravatar2twitter
           tag-semver: |
             {{ version }}
+            {{ major }}
             {{ major }}.{{ minor }}
       - name: Login to DockerHub
         uses: docker/login-action@v1
