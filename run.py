@@ -1,3 +1,6 @@
+# Fix for alpine py3-pillow package
+sys.path.append('/usr/lib/python3.8/site-packages')
+
 import os
 import base64
 import hashlib
