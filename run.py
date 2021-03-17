@@ -35,9 +35,15 @@ else:
     image = get_gravatar(email)
 
 api = TwitterAPI(consumer_key, consumer_secret, key, secret, proxy_url=proxy)
-res = api.request('account/update_profile_image', {'image': base64.b64encode(image)})
 
-if res.status_code != 200:
-    print(f'Failed with status code {res.status_code}')
-else:
-    print('OK')
+
+def put_avatar(image: bytes):
+    res = api.request('account/update_profile_image', {'image': base64.b64encode(image)})
+
+    if res.status_code != 200:
+        print(f'Failed to update profile image with status code {res.status_code}')
+    else:
+        print('OK to update profile image')
+
+
+put_avatar(image)
