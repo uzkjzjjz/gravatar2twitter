@@ -1,3 +1,5 @@
+import sys
+
 # Fix for alpine py3-pillow package
 sys.path.append('/usr/lib/python3.8/site-packages')
 
