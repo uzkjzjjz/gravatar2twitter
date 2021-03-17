@@ -4,6 +4,7 @@ import hashlib
 
 from TwitterAPI import TwitterAPI
 import requests
+from PIL import Image, ImageChops
 
 consumer_key = os.getenv('INPUT_CONSUMER_KEY')
 assert consumer_key
@@ -58,4 +59,10 @@ def put_avatar(image: bytes):
         print('OK to update profile image')
 
 
-put_avatar(image)
+avatar = get_avatar(name)
+diff = ImageChops.difference(avatar, image)
+if diff.getbbox():
+    print('Update avatar')
+    put_avatar(image)
+else:
+    print('No need to update avatar for they are the same')
