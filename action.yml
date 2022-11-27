@@ -1,6 +1,6 @@
 name: Gravatar to Twitter
-author: myl7
-description: Use Gravatar to provide avatar for Twitter
+المؤلف : z99gao 
+الوصف : استخدم Gravatar لتقديم الصورة الرمزية لـ Twitter
 inputs:
   consumer_key:
     description: Provided by API key of Consumer Keys of App in Twitter developer portal
@@ -14,8 +14,8 @@ inputs:
   secret:
     description: Provided by Access secret of Authentication Tokens of App in Twitter developer portal
     required: true
-  name:
-    description: Screen name, which is like ''@myl107'' without @.
+  الاسم :z99gao 
+    الوصف : اسم الشاشة ، وهو مثل "" @ myl107 " بدون @.
     required: true
   proxy:
     description: Setup proxy. Like ''http://127.0.0.1:1080''.
@@ -24,8 +24,8 @@ inputs:
   image_path:
     description: If provided, the image on the path will be used as avatar for Twitter
     required: false
-    default: ''
-  email:
+    الافتراضي : "
+  البريد الإلكتروني :fahd0albahoth@gmail.com 
     description: If image_path is not provided, get avatar according to the email from Gravatar
     required: false
     default: ''
